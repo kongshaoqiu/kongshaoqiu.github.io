@@ -145,6 +145,105 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-防抖节流函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/04/15/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">防抖节流函数</a>
+    </h1>
+  
+
+        
+        <a href="/2020/04/15/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/" class="archive-article-date">
+  	<time datetime="2020-04-15T14:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-04-15</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、防抖函数（debounce）"><a href="#一、防抖函数（debounce）" class="headerlink" title="一、防抖函数（debounce）"></a>一、防抖函数（debounce）</h2><p>用法：如果短时间内大量触发同一事件，那么只会执行一次函数，便于的理解的代码：</p>
+<pre><code>/*
+* fn (function)需要防抖的函数
+* delay (number)毫秒防抖的期限值
+*/
+
+function debounce(fn,delay){
+    let timer = null;
+    if(timer){
+        clearTimeout(timer)
+    //进入这个部分说明当前timer已经存在了，已经有一个计时的过程在进行了，
+    //并且又触发了相同事件，所以要取消这个在进行的进程
+    }
+    timer = setTimeout(fn,delay)
+}
+
+//函数的使用
+function showTop(){
+    var scrollTop = document.body.scrollTop;
+    console.log(&apos;滚动的距离&apos;+scrollTop);
+}
+
+window.onscroll = debounce(showTop,1000)</code></pre><p>总结：对于短时间内触发的事件（上面的滚动事件），防抖的含义就是让某个时间内（比如上述的1000毫秒内），事件的处理函数只执行了一次。</p>
+<hr>
+<h2 id="二、节流函数（throttle）"><a href="#二、节流函数（throttle）" class="headerlink" title="二、节流函数（throttle）"></a>二、节流函数（throttle）</h2><p>用法：一种类似阀门一样定期开放的函数，也就是让函数执行一次后，在某个时间段内暂时失效，过了这段时间后再重新激活（类似于冷却时间），代码如下：</p>
+<pre><code>function throttle(fn,delay){
+    let canRun = true;
+    return function(){
+        if(!canRun){
+            return false
+        };
+        canRun = false;
+        setTimeout(()=&gt;{
+            fn;
+            canRun = true;
+        },dalay)
+    }
+}</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2020/04/15/%E9%98%B2%E6%8A%96%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-css3的animation曲线动画效果" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -165,7 +264,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>css3曲线运动动画思路是两个嵌套的div，一个水平方向translateX（代码中right）以一定速度运动，一个垂直方向translateY（代码中top类）以一定速度运动，则两个div的整体的合运动是进行曲线运动的（参照抛物线运动中一个水平方向匀速度和垂直方向的加速度），可以通过调节各自aninmation中不同的运动执行时间,还有ease值，达到不同的运动效果，或者根据需求直接设置cubic-bezier(n,n,n,n)值。</p>
+        <h2 id="css3-animation"><a href="#css3-animation" class="headerlink" title="css3 animation"></a>css3 animation</h2><p>css3曲线运动动画思路是两个嵌套的div，一个水平方向translateX（代码中right）以一定速度运动，一个垂直方向translateY（代码中top类）以一定速度运动，则两个div的整体的合运动是进行曲线运动的（参照抛物线运动中一个水平方向匀速度和垂直方向的加速度），可以通过调节各自aninmation中不同的运动执行时间,还有ease值，达到不同的运动效果，或者根据需求直接设置cubic-bezier(n,n,n,n)值。</p>
 <pre><code>&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
